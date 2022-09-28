@@ -1,8 +1,10 @@
 import discord
-import constants
+import constants as const
+from urllib.parse import urlparse
 
 intents = discord.Intents.all()
 bot = discord.Bot(intents=intents)
+
 
 @bot.event
 async def on_ready():
@@ -15,8 +17,9 @@ async def hello(ctx):
 @bot.event
 async def on_message(message):
     if "https://twitter.com/" in message.content:
-        twitter_url = message.content
-        vxtwitter_url = twitter_url.replace("twitter", "vxtwitter")
+        twitter_url = urlparse(message.content)
+        tweet_path = twitter_url.path
+        vxtwitter_url = "https://vxtwitter.com" + tweet_path
         await message.reply(vxtwitter_url)
 
-bot.run(constants.bot_token) # run the bot with the token
+bot.run(const.BOT_TOKEN) # run the bot with the token
