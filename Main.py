@@ -14,7 +14,9 @@ async def hello(ctx):
 
 @bot.event
 async def on_message(message):
-    if "twitter" in message.content:
-        await message.reply("Twitter!!")
+    if "https://twitter.com/" in message.content:
+        twitter_url = message.content
+        vxtwitter_url = twitter_url.replace("twitter", "vxtwitter")
+        await message.reply(vxtwitter_url)
 
 bot.run(constants.bot_token) # run the bot with the token
