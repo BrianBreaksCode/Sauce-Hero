@@ -21,5 +21,6 @@ async def on_message(message):
         tweet_path = twitter_url.path
         vxtwitter_url = "https://vxtwitter.com" + tweet_path
         await message.reply(vxtwitter_url)
+        await message.edit(suppress=True)
 
 bot.run(const.BOT_TOKEN) # run the bot with the token
